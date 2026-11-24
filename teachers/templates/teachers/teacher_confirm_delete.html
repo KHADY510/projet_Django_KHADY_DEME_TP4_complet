@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Supprimer {{ teacher }}{% endblock %}
+{% block content %}
+    <h1>Supprimer {{ teacher }} ?</h1>
+    <p>Cette action est définitive : la fiche de l’enseignant sera effacée de la base.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-danger">Oui, supprimer</button>
+        <a href="{% url 'teachers:list' %}">Annuler</a>
+    </form>
+{% endblock %}

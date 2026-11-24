@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="text-align:center; color:#1a5276;">Liste des Étudiants</h2>
+
+<table style="width:100%; border-collapse:collapse; margin-top:20px; font-family:Arial;">
+    <tr style="background-color:#1a5276; color:white;">
+        <th style="padding:12px; border:1px solid #ddd;">Nom Complet</th>
+        <th style="padding:12px; border:1px solid #ddd;">Email</th>
+        <th style="padding:12px; border:1px solid #ddd;">Classe</th>
+        <th style="padding:12px; border:1px solid #ddd;">Téléphone</th>
+        <th style="padding:12px; border:1px solid #ddd;">Actions</th>
+    </tr>
+    {% for student in students %}
+    <tr style="background-color:{% if forloop.counter|divisibleby:2 %}#f2f8fb{% else %}white{% endif %};">
+        <td style="padding:10px; border:1px solid #ddd;">
+            <a href="{% url 'students:detail' student.pk %}" style="text-decoration:none; color:#1a5276; font-weight:bold;">
+                {{ student.first_name }} {{ student.last_name }}
+            </a>
+        </td>
+        <td style="padding:10px; border:1px solid #ddd;">{{ student.email }}</td>
+        <td style="padding:10px; border:1px solid #ddd;">{{ student.program }}</td>
+        <td style="padding:10px; border:1px solid #ddd;">{{ student.phone }}</td>
+        <td style="padding:10px; border:1px solid #ddd;">
+            <a href="{% url 'students:update' student.pk %}">Modifier</a> |
+            <a href="{% url 'students:delete' student.pk %}" style="color:red;">Supprimer</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

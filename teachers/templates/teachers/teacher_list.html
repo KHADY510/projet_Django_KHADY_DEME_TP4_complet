@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="text-align:center; color:#145a32;">Liste des Enseignants</h2>
+
+<table style="width:100%; border-collapse:collapse; margin-top:20px; font-family:Arial;">
+    <tr style="background-color:#145a32; color:white;">
+        <th style="padding:12px; border:1px solid #ddd;">Nom Complet</th>
+        <th style="padding:12px; border:1px solid #ddd;">Email</th>
+        <th style="padding:12px; border:1px solid #ddd;">Matière</th>
+        <th style="padding:12px; border:1px solid #ddd;">Téléphone</th>
+        <th style="padding:12px; border:1px solid #ddd;">Actions</th>
+    </tr>
+    {% for teacher in teachers %}
+    <tr style="background-color:{% if forloop.counter|divisibleby:2 %}#eafaf1{% else %}white{% endif %};">
+        <td style="padding:10px; border:1px solid #ddd;">
+            <a href="{% url 'teachers:detail' teacher.pk %}" style="text-decoration:none; color:#145a32; font-weight:bold;">
+                {{ teacher.first_name }} {{ teacher.last_name }}
+            </a>
+        </td>
+        <td style="padding:10px; border:1px solid #ddd;">{{ teacher.email }}</td>
+        <td style="padding:10px; border:1px solid #ddd;">{{ teacher.subject }}</td>
+        <td style="padding:10px; border:1px solid #ddd;">{{ teacher.phone }}</td>
+        <td style="padding:10px; border:1px solid #ddd;">
+            <a href="{% url 'teachers:update' teacher.pk %}">Modifier</a> |
+            <a href="{% url 'teachers:delete' teacher.pk %}" style="color:red;">Supprimer</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,6 @@
+TP4 School Manager - ce qui a ete ajoute
+1) Copier le dossier "projet_django" de ce zip PAR-DESSUS ton dossier projet_django (ton venv et ton .git restent).
+2) Terminal, venv active, dans projet_django :
+     python manage.py migrate
+     python manage.py runserver
+3) Pages : /students/  /students/new/  /students/<id>/edit/  /students/<id>/delete/  /teachers/  /teachers/new/  /admin/
